@@ -8,7 +8,10 @@ namespace Atividade3
 {
     interface IPagamento
     {
-        double valor {  get; set; }
-        void ProcessarPagamento(double valor);
+        void ProcessarPagamento(decimal valor);
+
     }
+
 }
+
+

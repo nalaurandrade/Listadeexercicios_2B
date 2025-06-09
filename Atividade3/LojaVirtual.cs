@@ -6,13 +6,12 @@ using System.Threading.Tasks;
 
 namespace Atividade3
 {
-    internal class LojaVirtual : IPagamento
+    class LojaVirtual
     {
-        public double valor { get; set; }
-
-        public void ProcessarPagamento(double valor)
+        public void RealizarPagamento(IPagamento metodoPagamento, decimal valor)
         {
-
+            metodoPagamento.ProcessarPagamento(valor);
         }
     }
+
 }

@@ -1,35 +1,46 @@
-﻿using System;
-using Atividade3;
+﻿using Atividade3;
 
-public class Program
+class Program
 {
-    public static void Main(string[] args)
+    static void Main(string[] args)
     {
-        IPagamento pagamento;
-        int opcao;
-        Console.WriteLine("Qual a forma de pagamento? \n1. Boleto \n2.Cartão de crédito");
+        LojaVirtual loja = new LojaVirtual();
 
-        string? input = Console.ReadLine();
-        if (!string.IsNullOrEmpty(input))
-        {
-            opcao = int.Parse(input);
+        Console.WriteLine("Bem-vindo à Loja Virtual!");
 
-            if (opcao == 1)
-            {
-                pagamento = new PagamentoBoleto();
-            }
-            else
-            {
-                pagamento = new PagamentoCartaoCredito();
-            }
-        }
-        else
+        Console.Write("Digite o valor do pagamento: R$ ");
+        if (!decimal.TryParse(Console.ReadLine(), out decimal valor))
         {
-            Console.WriteLine("Entrada inválida.");
+            Console.WriteLine("Valor inválido.");
             return;
         }
 
-        Console.ReadKey();
+        Console.WriteLine("\nEscolha o método de pagamento:");
+        Console.WriteLine("1 - Boleto Bancário");
+        Console.WriteLine("2 - Cartão de Crédito");
+        Console.WriteLine("3 - PIX");
+
+        Console.Write("Opção: ");
+        string opcao = Console.ReadLine();
+
+        IPagamento metodoPagamento = null;
+
+        switch (opcao)
+        {
+            case "1":
+                metodoPagamento = new PagamentoBoleto();
+                break;
+            case "2":
+                metodoPagamento = new PagamentoCartaoCredito();
+                break;
+            case "3":
+                metodoPagamento = new PagamentoPix();
+                break;
+            default:
+                Console.WriteLine("Opção inválida.");
+                return;
+        }
+
+        loja.RealizarPagamento(metodoPagamento, valor);
     }
 }
-

@@ -9,14 +9,13 @@ namespace Atividade3
 {
     class PagamentoCartaoCredito : IPagamento
     {
-        public double valor { get; set; }
-
-        void IPagamento.ProcessarPagamento(double valor)
+        public void ProcessarPagamento(decimal valor)
         {
-            Console.WriteLine($"Pagamento de R${valor} processado no cartão de crédito");
+            Console.WriteLine($"Pagamento de R${valor} processado no cartão de crédito.");
         }
     }
 
 }
+
 
 
